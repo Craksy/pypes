@@ -1,0 +1,593 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
+        <title>pypes_server.serverclient - Pypes 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-problematic: #ff5555;
+  --color-foreground-primary: #f8f8f2;
+  --color-foreground-secondary: #6272a4;
+  --color-foreground-muted: #6272a488;
+  --color-foreground-border: #bd93f9;
+  --color-background-primary: #282a36;
+  --color-background-secondary: #6272a4;
+  --color-background-hover: #bd93f9ff;
+  --color-background-hover--transparent: #bd93f988;
+  --color-background-border: #44475a;
+  --color-brand-primary: #50fa7b;
+  --color-brand-content: #ffb86c;
+  --color-link: #bd93f9;
+  --color-link--hover: #ff79c6;
+  --color-sidebar-background: #232530;
+  --color-sidebar-search-background: #282a36;
+  --color-sidebar-brand-text: #bd93f9;
+  --color-sidebar-item-background--hover: linear-gradient(90deg, #232530 -20%, #44475a 120%);
+  --color-api-background: #232530;
+  --color-api-background-hover: #6272a488;
+  --color-api-overall: #f8f8f2;
+  --color-api-name: #bd93f9;
+  --color-api-pre-name: #f1fa8c;
+  --color-api-paren: #6272a4;
+  --color-api-keyword: #50fa7b;
+  --color-api-highlight-on-target: #8be9fd;
+  --color-admonition-title--caution: #f1fa8c;
+  --color-admonition-title-background--caution: rgba(241,250,140, 0.1);
+  --color-admonition-title--warning: #ffb86c;
+  --color-admonition-title-background--warning: rgba(255,184,108, 0.1);
+  --color-admonition-title--danger: #ff5555;
+  --color-admonition-title-background--danger: rgba(255,85,85, 0.1);
+  --color-admonition-title--attention: #ff5555;
+  --color-admonition-title-background--attention: rgba(255,85,85, 0.1);
+  --color-admonition-title--error: #ff5555;
+  --color-admonition-title-background--error: rgba(255,85,85, 0.1);
+  --color-admonition-title--hint: #50fa7b;
+  --color-admonition-title-background--hint: rgba(80,250,123, 0.1);
+  --color-admonition-title--tip: #50fa7b;
+  --color-admonition-title-background--tip: rgba(80,250,123, 0.1);
+  --color-admonition-title--important: #f1fa8c;
+  --color-admonition-title-background--important: rgba(241,250,140, 0.1);
+  --color-admonition-title--note: #8be9fd;
+  --color-admonition-title-background--note: rgba(139,233,253, 0.1);
+  --color-admonition-title--seealso: #8be9fd;
+  --color-admonition-title-background--seealso: rgba(139,233,253, 0.1);
+  --color-admonition-title--admonition-todo: #bd93f9;
+  --color-admonition-title-background--admonition-todo: rgba(189,147,249, 0.1);
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-problematic: #ff5555;
+  --color-foreground-primary: #f8f8f2;
+  --color-foreground-secondary: #6272a4;
+  --color-foreground-muted: #6272a488;
+  --color-foreground-border: #bd93f9;
+  --color-background-primary: #282a36;
+  --color-background-secondary: #6272a4;
+  --color-background-hover: #bd93f9ff;
+  --color-background-hover--transparent: #bd93f988;
+  --color-background-border: #44475a;
+  --color-brand-primary: #50fa7b;
+  --color-brand-content: #ffb86c;
+  --color-link: #bd93f9;
+  --color-link--hover: #ff79c6;
+  --color-sidebar-background: #232530;
+  --color-sidebar-search-background: #282a36;
+  --color-sidebar-brand-text: #bd93f9;
+  --color-sidebar-item-background--hover: linear-gradient(90deg, #232530 -20%, #44475a 120%);
+  --color-api-background: #232530;
+  --color-api-background-hover: #6272a488;
+  --color-api-overall: #f8f8f2;
+  --color-api-name: #bd93f9;
+  --color-api-pre-name: #f1fa8c;
+  --color-api-paren: #6272a4;
+  --color-api-keyword: #50fa7b;
+  --color-api-highlight-on-target: #8be9fd;
+  --color-admonition-title--caution: #f1fa8c;
+  --color-admonition-title-background--caution: rgba(241,250,140, 0.1);
+  --color-admonition-title--warning: #ffb86c;
+  --color-admonition-title-background--warning: rgba(255,184,108, 0.1);
+  --color-admonition-title--danger: #ff5555;
+  --color-admonition-title-background--danger: rgba(255,85,85, 0.1);
+  --color-admonition-title--attention: #ff5555;
+  --color-admonition-title-background--attention: rgba(255,85,85, 0.1);
+  --color-admonition-title--error: #ff5555;
+  --color-admonition-title-background--error: rgba(255,85,85, 0.1);
+  --color-admonition-title--hint: #50fa7b;
+  --color-admonition-title-background--hint: rgba(80,250,123, 0.1);
+  --color-admonition-title--tip: #50fa7b;
+  --color-admonition-title-background--tip: rgba(80,250,123, 0.1);
+  --color-admonition-title--important: #f1fa8c;
+  --color-admonition-title-background--important: rgba(241,250,140, 0.1);
+  --color-admonition-title--note: #8be9fd;
+  --color-admonition-title-background--note: rgba(139,233,253, 0.1);
+  --color-admonition-title--seealso: #8be9fd;
+  --color-admonition-title-background--seealso: rgba(139,233,253, 0.1);
+  --color-admonition-title--admonition-todo: #bd93f9;
+  --color-admonition-title-background--admonition-todo: rgba(189,147,249, 0.1);
+  
+    }
+  }
+</style>
+    <link rel="stylesheet" href="../../_static/tooltip.css"/>
+    <link rel="stylesheet" href="../../_static/main.css"/>
+    <link rel="stylesheet" href="../../_static/dracula.css"/>
+    <script type="text/javascript" src="../../_static/tooltip.js"></script>
+</head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Pypes 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Pypes 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../raspberry.html">Raspberry Pi</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pypes.html">The Pypes software and protocol</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../modules.html">src</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../pypes_client.html">pypes_client package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pypes_server.html">pypes_server package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Wordlist</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for pypes_server.serverclient</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">asyncio.streams</span> <span class="kn">import</span> <span class="n">StreamReader</span><span class="p">,</span> <span class="n">StreamWriter</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">protocol</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="n">palette</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">'2f4f4f'</span><span class="p">,</span> <span class="s1">'556b2f'</span><span class="p">,</span> <span class="s1">'a0522d'</span><span class="p">,</span> <span class="s1">'2e8b57'</span><span class="p">,</span> <span class="s1">'228b22'</span><span class="p">,</span>
+    <span class="s1">'800000'</span><span class="p">,</span> <span class="s1">'708090'</span><span class="p">,</span> <span class="s1">'808000'</span><span class="p">,</span> <span class="s1">'483d8b'</span><span class="p">,</span> <span class="s1">'008080'</span><span class="p">,</span>
+    <span class="s1">'b8860b'</span><span class="p">,</span> <span class="s1">'4682b4'</span><span class="p">,</span> <span class="s1">'d2691e'</span><span class="p">,</span> <span class="s1">'9acd32'</span><span class="p">,</span> <span class="s1">'33338b'</span><span class="p">,</span>
+    <span class="s1">'32cd32'</span><span class="p">,</span> <span class="s1">'7f007f'</span><span class="p">,</span> <span class="s1">'8fbc8f'</span><span class="p">,</span> <span class="s1">'b03060'</span><span class="p">,</span> <span class="s1">'9932cc'</span><span class="p">,</span>
+    <span class="s1">'ff4500'</span><span class="p">,</span> <span class="s1">'00ced1'</span><span class="p">,</span> <span class="s1">'ff8c00'</span><span class="p">,</span> <span class="s1">'ffd700'</span><span class="p">,</span> <span class="s1">'c71585'</span><span class="p">,</span>
+    <span class="s1">'4444cd'</span><span class="p">,</span> <span class="s1">'00ff00'</span><span class="p">,</span> <span class="s1">'00ff7f'</span><span class="p">,</span> <span class="s1">'4169e1'</span><span class="p">,</span> <span class="s1">'dc143c'</span><span class="p">,</span>
+    <span class="s1">'00bfff'</span><span class="p">,</span> <span class="s1">'f4a460'</span><span class="p">,</span> <span class="s1">'6666ff'</span><span class="p">,</span> <span class="s1">'a020f0'</span><span class="p">,</span> <span class="s1">'adff2f'</span><span class="p">,</span>
+    <span class="s1">'ff6347'</span><span class="p">,</span> <span class="s1">'da70d6'</span><span class="p">,</span> <span class="s1">'b0c4de'</span><span class="p">,</span> <span class="s1">'ff00ff'</span><span class="p">,</span> <span class="s1">'f0e68c'</span><span class="p">,</span>
+    <span class="s1">'fa8072'</span><span class="p">,</span> <span class="s1">'ffff54'</span><span class="p">,</span> <span class="s1">'6495ed'</span><span class="p">,</span> <span class="s1">'dda0dd'</span><span class="p">,</span> <span class="s1">'90ee90'</span><span class="p">,</span>
+    <span class="s1">'afeeee'</span><span class="p">,</span> <span class="s1">'7fffd4'</span><span class="p">,</span> <span class="s1">'ff69b4'</span><span class="p">,</span> <span class="s1">'ffe4c4'</span><span class="p">,</span> <span class="s1">'ffc0cb'</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># ?: just put these inside of the relevant handlers?</span>
+
+<span class="n">welcome_text</span> <span class="o">=</span> <span class="s2">"""Velkommen til, </span><span class="si">{name}</span><span class="s2">.</span>
+<span class="s2">Du kan skrive /help for at få vist en liste over kommandoer."""</span>
+
+<span class="n">help_text</span> <span class="o">=</span> <span class="s2">"""Chatkommandoer kan bruges ved at begynde en besked med / og</span>
+<span class="s2">navnet på en kommando. nogle kommandoer kan modtage et eller flere parametre</span>
+<span class="s2">adskildt af mellemrum.</span>
+
+<span class="s2">Kommandoer:</span>
+<span class="s2">HELP              - viser denne besked</span>
+<span class="s2">NAME &lt;navn&gt;       - Anmod om at skifte navn</span>
+<span class="s2">COLOR &lt;farve&gt;     - skift farven dit navn bliver vist med. farven angives som</span>
+<span class="s2">                    hexadecimal i formatet RRGGBB eller 0xRRGGBB"""</span>
+
+<div class="viewcode-block" id="UserClient"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient">[docs]</a><span class="k">class</span> <span class="nc">UserClient</span><span class="p">:</span>
+    <span class="sd">"""Represents a client connected to the server</span>
+
+<span class="sd">    A single connected client with two streams for communication. Functions as</span>
+<span class="sd">    the main handler for clients, and is were most of the protocol is</span>
+<span class="sd">    implemented. Anything beyond 1-to-1 communication with the server should be</span>
+<span class="sd">    implemented in `Server` class; UserClients should not interact with eachother directly.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        reader: The incoming data stream</span>
+<span class="sd">        writer: The outgoing data stream</span>
+<span class="sd">        name:   The username associated with this client</span>
+<span class="sd">        color:  The color that this clients name has</span>
+<span class="sd">        server: A reference to the server object.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reader</span><span class="p">:</span><span class="n">StreamReader</span><span class="p">,</span> <span class="n">writer</span><span class="p">:</span><span class="n">StreamWriter</span><span class="p">,</span> <span class="n">server</span><span class="p">):</span>
+        <span class="sd">"""Initialize a new client.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reader (StreamReader):  The stream of incomming data</span>
+<span class="sd">            writer (StreamWriter):  The stream to write to</span>
+<span class="sd">            server (Server):        A reference to the server object instance.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">reader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">writer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="n">server</span><span class="o">.</span><span class="n">Server</span> <span class="o">=</span> <span class="n">server</span>
+
+
+<div class="viewcode-block" id="UserClient.send"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">"""Send a message to the client</span>
+
+<span class="sd">        Parse provided arguments to construct a message object.</span>
+<span class="sd">        Serialize to JSON and send it to the client.</span>
+
+<span class="sd">        .. important::</span>
+<span class="sd">            Note that this is not an async method and it does not flush the stream.</span>
+<span class="sd">            Use ``await self.writer.drain()`` to make sure that previous messages have</span>
+<span class="sd">            been sent</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            type (str): The protocol message type</span>
+<span class="sd">            kwargs (dict): each key/value-pair will be put in the ``payload`` field of the sent message</span>
+<span class="sd">        """</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span> <span class="nb">type</span><span class="p">}</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">message</span><span class="p">[</span><span class="s1">'payload'</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span>
+            <span class="n">serialized</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">serialized</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"We fked up: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UserClient.recv"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient.recv">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">recv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">"""Receive a message from the client.</span>
+
+<span class="sd">        Await a message from the client, parse the data as JSON, and deserialize</span>
+<span class="sd">        it into a python a dict with the form:</span>
+
+<span class="sd">        .. code-block:: text</span>
+
+<span class="sd">            {</span>
+<span class="sd">                'type': '&lt;MESSAGE_TYPE&gt;',</span>
+<span class="sd">                'payload': &lt;ADDITIONAL_DATA&gt;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Please behave.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            size (int): Amount of bytes to read from the stream</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A (type, data) tuple, which represents the extracted `type` and</span>
+<span class="sd">            `payload` fields of the received object.</span>
+<span class="sd">        """</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">deserialized</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="n">deserialized</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">deserialized</span><span class="p">[</span><span class="s1">'payload'</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">kind</span><span class="p">,</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="UserClient.handle"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient.handle">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Start handling this client</span>
+
+<span class="sd">        Main entry point for the client handler.</span>
+<span class="sd">        First performs the initial handshake to negotiate username, and then</span>
+<span class="sd">        proceed with handling regular mesasges.</span>
+<span class="sd">        Check type of received messages and forward to specific handler functions.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">perform_handshake</span><span class="p">():</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">SERVER_INFO</span><span class="p">,</span>
+                  <span class="n">message</span><span class="o">=</span><span class="n">welcome_text</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Accepted client </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">typ</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">Protocol</span><span class="o">.</span><span class="n">MESSAGE</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_message</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">Protocol</span><span class="o">.</span><span class="n">TELL</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_tell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">Protocol</span><span class="o">.</span><span class="n">COMMAND</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_command</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UserClient.handle_command"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient.handle_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">"""Handle a COMMAND message sent from the client.</span>
+
+<span class="sd">        A COMMAND message represents a user command sent from the client, for example a `/SlashCommand`.</span>
+<span class="sd">        The payload of a COMMAND is an object with a `cmd` field which is the</span>
+<span class="sd">        command being sent, and optionally an `args` fields with additional</span>
+<span class="sd">        data. The structure is essentially the same as the (type, payload)</span>
+<span class="sd">        format used for message objects.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (dict): The {'cmd': ..., 'args': ...} command object</span>
+<span class="sd">        """</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'cmd'</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'args'</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"handling command </span><span class="si">%s</span><span class="s2"> with args </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s2">"HELP"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">SERVER_INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">help_text</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s2">"NAME"</span><span class="p">:</span>
+            <span class="n">newname</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">newname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">SERVER_INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"Navn optaget"</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">users</span><span class="p">[</span><span class="n">newname</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">users</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">newname</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s2">"COLOR"</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">clr</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">clr</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">clr</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">SERVER_INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"ugyldigt format"</span><span class="p">)</span>
+                <span class="k">return</span></div>
+    
+<div class="viewcode-block" id="UserClient.handle_message"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient.handle_message">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">"""handle a MESSAGE message.</span>
+
+<span class="sd">        Handles a message sent from the client. Simply extract the message from</span>
+<span class="sd">        the provided object, and forward it to the `Server` for broadcasting.</span>
+<span class="sd">        MESSAGE does not require arguments.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (dict): The payload. Expected to just contain a {'message': ...} object</span>
+<span class="sd">        """</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'message'</span><span class="p">]</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"[</span><span class="si">{}</span><span class="s2"> MESSAGE]: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">broadcast_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UserClient.handle_tell"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient.handle_tell">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle_tell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">"""handle a TELL message.</span>
+
+<span class="sd">        Handles a message sent from the client to another client.</span>
+<span class="sd">        Extract the `message` and `target` from the provided payload, and forward to server.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (dict): The payload. Expected to just contain a {'message': ..., 'target': ...} object</span>
+<span class="sd">        """</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'message'</span><span class="p">]</span>
+        <span class="n">recepient</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"[</span><span class="si">{}</span><span class="s2"> TELL]: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">recepient</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">payload</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> 
+                           <span class="n">sender</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> 
+                           <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">TELL</span><span class="p">,</span> <span class="o">**</span><span class="n">payload</span><span class="p">)</span>
+            <span class="c1"># TODO: this is not going to work</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">TELL</span><span class="p">,</span> <span class="o">**</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">SERVER_INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"User not found"</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UserClient.perform_handshake"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.serverclient.UserClient.perform_handshake">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">perform_handshake</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Performs the initial name negotiation</span>
+
+<span class="sd">        Before a client can join the chat, a handshake has to be completed.</span>
+<span class="sd">        The handshake is simply a 3-message conversation that verifies the</span>
+<span class="sd">        connection, makes sure that the client connects with a valid, available</span>
+<span class="sd">        username; server says hello, client requests a name, server welcomes the</span>
+<span class="sd">        client with the name they were assigned. The client can be assigned a</span>
+<span class="sd">        different name, if the requested name was already taken.</span>
+
+<span class="sd">        +-----------------+------------+------------------+</span>
+<span class="sd">        | Server          |  direction |  Client          |</span>
+<span class="sd">        +=================+============+==================+</span>
+<span class="sd">        |HELLO            |  ---&gt;      |                  |</span>
+<span class="sd">        +-----------------+------------+------------------+</span>
+<span class="sd">        |                 |  &lt;---      | NAME(requested)  |</span>
+<span class="sd">        +-----------------+------------+------------------+</span>
+<span class="sd">        |WELCOME(assigned)|  ---&gt;      |                  |</span>
+<span class="sd">        +-----------------+------------+------------------+</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (bool) Success status of the handshake.</span>
+<span class="sd">        """</span>
+        <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">SERVER_HELLO</span><span class="p">)</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
+                <span class="n">typ</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">Protocol</span><span class="o">.</span><span class="n">CLIENT_NAME</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"Invalid response type. Expected 'NAME'"</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+                <span class="c1">#TODO: This entire thing could be a `Server.accept_user(name)` or something</span>
+                <span class="n">suffix</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">while</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
+                    <span class="n">suffix</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">users</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">choice</span><span class="p">(</span><span class="n">palette</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Protocol</span><span class="o">.</span><span class="n">SERVER_WELCOME</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"[</span><span class="si">%s</span><span class="s2">]Handshake failed: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"[</span><span class="si">%s</span><span class="s2">]Attempting handshake again. Attempt </span><span class="si">%s</span><span class="s2">/3"</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">retry_count</span><span class="p">)</span>
+                    <span class="n">retry_count</span><span class="o">+=</span><span class="mi">1</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"[</span><span class="si">%s</span><span class="s2">]Retry limit reached. dropping client."</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="kc">False</span></div></div>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Silas Wagner |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/main.js"></script>
+    </body>
+</html>

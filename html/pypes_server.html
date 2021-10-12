@@ -1,0 +1,1011 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Glossary" href="glossary.html" /><link rel="prev" title="pypes_client package" href="pypes_client.html" />
+
+    <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
+        <title>pypes_server package - Pypes 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-problematic: #ff5555;
+  --color-foreground-primary: #f8f8f2;
+  --color-foreground-secondary: #6272a4;
+  --color-foreground-muted: #6272a488;
+  --color-foreground-border: #bd93f9;
+  --color-background-primary: #282a36;
+  --color-background-secondary: #6272a4;
+  --color-background-hover: #bd93f9ff;
+  --color-background-hover--transparent: #bd93f988;
+  --color-background-border: #44475a;
+  --color-brand-primary: #50fa7b;
+  --color-brand-content: #ffb86c;
+  --color-link: #bd93f9;
+  --color-link--hover: #ff79c6;
+  --color-sidebar-background: #232530;
+  --color-sidebar-search-background: #282a36;
+  --color-sidebar-brand-text: #bd93f9;
+  --color-sidebar-item-background--hover: linear-gradient(90deg, #232530 -20%, #44475a 120%);
+  --color-api-background: #232530;
+  --color-api-background-hover: #6272a488;
+  --color-api-overall: #f8f8f2;
+  --color-api-name: #bd93f9;
+  --color-api-pre-name: #f1fa8c;
+  --color-api-paren: #6272a4;
+  --color-api-keyword: #50fa7b;
+  --color-api-highlight-on-target: #8be9fd;
+  --color-admonition-title--caution: #f1fa8c;
+  --color-admonition-title-background--caution: rgba(241,250,140, 0.1);
+  --color-admonition-title--warning: #ffb86c;
+  --color-admonition-title-background--warning: rgba(255,184,108, 0.1);
+  --color-admonition-title--danger: #ff5555;
+  --color-admonition-title-background--danger: rgba(255,85,85, 0.1);
+  --color-admonition-title--attention: #ff5555;
+  --color-admonition-title-background--attention: rgba(255,85,85, 0.1);
+  --color-admonition-title--error: #ff5555;
+  --color-admonition-title-background--error: rgba(255,85,85, 0.1);
+  --color-admonition-title--hint: #50fa7b;
+  --color-admonition-title-background--hint: rgba(80,250,123, 0.1);
+  --color-admonition-title--tip: #50fa7b;
+  --color-admonition-title-background--tip: rgba(80,250,123, 0.1);
+  --color-admonition-title--important: #f1fa8c;
+  --color-admonition-title-background--important: rgba(241,250,140, 0.1);
+  --color-admonition-title--note: #8be9fd;
+  --color-admonition-title-background--note: rgba(139,233,253, 0.1);
+  --color-admonition-title--seealso: #8be9fd;
+  --color-admonition-title-background--seealso: rgba(139,233,253, 0.1);
+  --color-admonition-title--admonition-todo: #bd93f9;
+  --color-admonition-title-background--admonition-todo: rgba(189,147,249, 0.1);
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-problematic: #ff5555;
+  --color-foreground-primary: #f8f8f2;
+  --color-foreground-secondary: #6272a4;
+  --color-foreground-muted: #6272a488;
+  --color-foreground-border: #bd93f9;
+  --color-background-primary: #282a36;
+  --color-background-secondary: #6272a4;
+  --color-background-hover: #bd93f9ff;
+  --color-background-hover--transparent: #bd93f988;
+  --color-background-border: #44475a;
+  --color-brand-primary: #50fa7b;
+  --color-brand-content: #ffb86c;
+  --color-link: #bd93f9;
+  --color-link--hover: #ff79c6;
+  --color-sidebar-background: #232530;
+  --color-sidebar-search-background: #282a36;
+  --color-sidebar-brand-text: #bd93f9;
+  --color-sidebar-item-background--hover: linear-gradient(90deg, #232530 -20%, #44475a 120%);
+  --color-api-background: #232530;
+  --color-api-background-hover: #6272a488;
+  --color-api-overall: #f8f8f2;
+  --color-api-name: #bd93f9;
+  --color-api-pre-name: #f1fa8c;
+  --color-api-paren: #6272a4;
+  --color-api-keyword: #50fa7b;
+  --color-api-highlight-on-target: #8be9fd;
+  --color-admonition-title--caution: #f1fa8c;
+  --color-admonition-title-background--caution: rgba(241,250,140, 0.1);
+  --color-admonition-title--warning: #ffb86c;
+  --color-admonition-title-background--warning: rgba(255,184,108, 0.1);
+  --color-admonition-title--danger: #ff5555;
+  --color-admonition-title-background--danger: rgba(255,85,85, 0.1);
+  --color-admonition-title--attention: #ff5555;
+  --color-admonition-title-background--attention: rgba(255,85,85, 0.1);
+  --color-admonition-title--error: #ff5555;
+  --color-admonition-title-background--error: rgba(255,85,85, 0.1);
+  --color-admonition-title--hint: #50fa7b;
+  --color-admonition-title-background--hint: rgba(80,250,123, 0.1);
+  --color-admonition-title--tip: #50fa7b;
+  --color-admonition-title-background--tip: rgba(80,250,123, 0.1);
+  --color-admonition-title--important: #f1fa8c;
+  --color-admonition-title-background--important: rgba(241,250,140, 0.1);
+  --color-admonition-title--note: #8be9fd;
+  --color-admonition-title-background--note: rgba(139,233,253, 0.1);
+  --color-admonition-title--seealso: #8be9fd;
+  --color-admonition-title-background--seealso: rgba(139,233,253, 0.1);
+  --color-admonition-title--admonition-todo: #bd93f9;
+  --color-admonition-title-background--admonition-todo: rgba(189,147,249, 0.1);
+  
+    }
+  }
+</style>
+    <link rel="stylesheet" href="_static/tooltip.css"/>
+    <link rel="stylesheet" href="_static/main.css"/>
+    <link rel="stylesheet" href="_static/dracula.css"/>
+    <script type="text/javascript" src="_static/tooltip.js"></script>
+</head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Pypes 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Pypes 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="raspberry.html">Raspberry Pi</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="pypes.html">The Pypes software and protocol</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="modules.html">src</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pypes_client.html">pypes_client package</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">pypes_server package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Wordlist</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="pypes-server-package">
+<h1>pypes_server package<a class="headerlink" href="#pypes-server-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-pypes_server.color">
+<span id="pypes-server-color-module"></span><h2>pypes_server.color module<a class="headerlink" href="#module-pypes_server.color" title="Permalink to this headline">¶</a></h2>
+<section id="color-py">
+<h3>color.py<a class="headerlink" href="#color-py" title="Permalink to this headline">¶</a></h3>
+<section id="usage">
+<h4>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">color</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 8-bit color</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="s1">'red'</span><span class="p">)</span> <span class="o">+</span> <span class="n">green</span><span class="p">(</span><span class="s1">'green'</span><span class="p">)</span> <span class="o">+</span> <span class="n">blue</span><span class="p">(</span><span class="s1">'blue'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="n">yellow</span><span class="p">(</span><span class="s1">'bold yellow'</span><span class="p">))</span> <span class="o">+</span> <span class="n">underline</span><span class="p">(</span><span class="n">cyan</span><span class="p">(</span><span class="s1">'underline cyan'</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">magenta_hl</span><span class="p">(</span><span class="s1">'magenta highlight'</span><span class="p">))</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># xterm 256 color</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bg256</span><span class="p">(</span><span class="s1">'A9D5DE'</span><span class="p">,</span> <span class="n">fg256</span><span class="p">(</span><span class="s1">'276F86'</span><span class="p">,</span> <span class="s1">'Info!'</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bg256</span><span class="p">(</span><span class="s1">'E0B4B4'</span><span class="p">,</span> <span class="n">fg256</span><span class="p">(</span><span class="s1">'912D2B'</span><span class="p">,</span> <span class="s1">'Warning!'</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hl256</span><span class="p">(</span><span class="s1">'10a3a3'</span><span class="p">,</span> <span class="s1">'Teal'</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Note:</p>
+<ol class="arabic simple">
+<li><p>Every color function receives and returns string, so that the result
+could be used with any other strings, in any string formatting situation.</p></li>
+<li><p>If you pass a str type string, the color function will return a str.
+If you pass a bytes type string, the color function will return a bytes string.</p></li>
+<li><p>Color functions could be composed together, like put <code class="docutils literal notranslate"><span class="pre">red</span></code> into <code class="docutils literal notranslate"><span class="pre">bold</span></code>,
+or put <code class="docutils literal notranslate"><span class="pre">bg256</span></code> into <code class="docutils literal notranslate"><span class="pre">fg256</span></code>. <code class="docutils literal notranslate"><span class="pre">xxx_hl</span></code> and <code class="docutils literal notranslate"><span class="pre">hl256</span></code> are mostly used
+independently.</p></li>
+</ol>
+</section>
+<section id="api">
+<h4>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h4>
+<p>8-bit colors:</p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 26%"/>
+<col style="width: 39%"/>
+<col style="width: 35%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Colors</p></th>
+<th class="head"><p>Background</p></th>
+<th class="head"><p>Highlight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>black</p></td>
+<td><p>black_bg</p></td>
+<td><p>black_hl</p></td>
+</tr>
+<tr class="row-odd"><td><p>red</p></td>
+<td><p>red_bg</p></td>
+<td><p>red_hl</p></td>
+</tr>
+<tr class="row-even"><td><p>green</p></td>
+<td><p>green_bg</p></td>
+<td><p>green_hl</p></td>
+</tr>
+<tr class="row-odd"><td><p>yellow</p></td>
+<td><p>yellow_bg</p></td>
+<td><p>yellow_hl</p></td>
+</tr>
+<tr class="row-even"><td><p>blue</p></td>
+<td><p>blue_bg</p></td>
+<td><p>blue_hl</p></td>
+</tr>
+<tr class="row-odd"><td><p>magenta</p></td>
+<td><p>magenta_bg</p></td>
+<td><p>magenta_hl</p></td>
+</tr>
+<tr class="row-even"><td><p>cyan</p></td>
+<td><p>cyan_bg</p></td>
+<td><p>cyan_hl</p></td>
+</tr>
+<tr class="row-odd"><td><p>white</p></td>
+<td><p>white_bg</p></td>
+<td><p>white_hl</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>Styles:
+- bold
+- italic
+- underline
+- strike
+- blink</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">&lt;color_function&gt;(s)</span></span></dt>
+<dd><p>Decorate string with specified color or style.</p>
+<p>A color function with <code class="docutils literal notranslate"><span class="pre">_bg</span></code> suffix means it will set color as background.
+A color function with <code class="docutils literal notranslate"><span class="pre">_hl</span></code> suffix means it will set color as background,
+and change the foreground as well to make the word standout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – The input string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The decorated string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the message_body exceeds 160 characters</p>
+</dd>
+</dl>
+</dd></dl>
+<p>256 colors:
+- fg256
+- bg256
+- hl256</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">&lt;256_color_function&gt;(hexrgb,</span> <span class="pre">s)</span></span></dt>
+<dd><p>Decorate string with specified hex rgb color</p>
+<p><code class="docutils literal notranslate"><span class="pre">fg256</span></code> will set color as foreground.
+<code class="docutils literal notranslate"><span class="pre">bg256</span></code> will set color as background.
+<code class="docutils literal notranslate"><span class="pre">hg256</span></code> will highlight input with the color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hexrgb</strong> (<em>str</em>) – The hex rgb color string, accept length 3 and 6. eg: <code class="docutils literal notranslate"><span class="pre">555</span></code>, <code class="docutils literal notranslate"><span class="pre">912D2B</span></code></p></li>
+<li><p><strong>s</strong> (<em>str</em>) – The input string</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The decorated string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the input string’s length not equal to 3 or 6.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypes_server.color.Memorize">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">Memorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/color.html#Memorize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.Memorize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.b_">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">b_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="_modules/pypes_server/color.html#b_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.b_" title="Permalink to this definition">¶</a></dt>
+<dd><p>ensure binary type</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.bg256">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">bg256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rgb</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.bg256" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rgb</strong> – (R, G, B) tuple, or RRGGBB hex string</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.black">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">black</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.black" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.black_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">black_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.black_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.black_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">black_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.black_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.blink">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">blink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.blink" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.blue">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">blue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.blue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.blue_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">blue_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.blue_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.blue_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">blue_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.blue_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.bold">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">bold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.bold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.cyan">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">cyan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.cyan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.cyan_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">cyan_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.cyan_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.cyan_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">cyan_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.cyan_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.esc">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">esc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">codes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pypes_server/color.html#esc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.esc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces an ANSI escape code from a list of integers
+:rtype: text_type</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.fg256">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">fg256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rgb</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.fg256" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rgb</strong> – (R, G, B) tuple, or RRGGBB hex string</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.get_closest">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">get_closest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/color.html#get_closest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.get_closest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.green">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">green</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.green" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.green_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">green_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.green_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.green_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">green_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.green_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.hex_to_rgb">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">hex_to_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/color.html#hex_to_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.hex_to_rgb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.hl256">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">hl256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rgb</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.hl256" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rgb</strong> – (R, G, B) tuple, or RRGGBB hex string</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.italic">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">italic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.italic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.magenta">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">magenta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.magenta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.magenta_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">magenta_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.magenta_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.magenta_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">magenta_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.magenta_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.make_256">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">make_256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypes_server/color.html#make_256"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.make_256" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.make_color">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">make_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypes_server/color.html#make_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.make_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.memorize">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">memorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="reference internal" href="_modules/pypes_server/color.html#memorize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.memorize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.red">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">red</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.red" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.red_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">red_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.red_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.red_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">red_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.red_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.rgb_to_xterm">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">rgb_to_xterm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/color.html#rgb_to_xterm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.rgb_to_xterm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts RGB values to the nearest equivalent xterm-256 color.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.strike">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">strike</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.strike" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.t_">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">t_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pypes_server/color.html#t_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.t_" title="Permalink to this definition">¶</a></dt>
+<dd><p>ensure text type</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.underline">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">underline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.underline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.use_color">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">use_color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/color.html#use_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.use_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.use_color_no_tty">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">use_color_no_tty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/color.html#use_color_no_tty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.color.use_color_no_tty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.white">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">white</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.white" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.white_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">white_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.white_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.white_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">white_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.white_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.yellow">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">yellow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.yellow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.yellow_bg">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">yellow_bg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.yellow_bg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.color.yellow_hl">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.color.</span></span><span class="sig-name descname"><span class="pre">yellow_hl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pypes_server.color.yellow_hl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</section>
+</section>
+</section>
+<section id="module-pypes_server.main">
+<span id="pypes-server-main-module"></span><h2>pypes_server.main module<a class="headerlink" href="#module-pypes_server.main" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pypes_server.main.main">
+<span class="sig-prename descclassname"><span class="pre">pypes_server.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.main.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</section>
+<section id="module-pypes_server.protocol">
+<span id="pypes-server-protocol-module"></span><h2>pypes_server.protocol module<a class="headerlink" href="#module-pypes_server.protocol" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pypes_server.protocol.</span></span><span class="sig-name descname"><span class="pre">Protocol</span></span><a class="reference internal" href="_modules/pypes_server/protocol.html#Protocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.protocol.Protocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Binds protocol identifiers to names.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.CLIENT_CMD">
+<span class="sig-name descname"><span class="pre">CLIENT_CMD</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'CLIENT_CMD'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.CLIENT_CMD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.CLIENT_NAME">
+<span class="sig-name descname"><span class="pre">CLIENT_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'CLIENT_NAME'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.CLIENT_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.COMMAND">
+<span class="sig-name descname"><span class="pre">COMMAND</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'COMMAND'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.COMMAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.DROP">
+<span class="sig-name descname"><span class="pre">DROP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'DROP'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.DROP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.MESSAGE">
+<span class="sig-name descname"><span class="pre">MESSAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'MESSAGE'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.MESSAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.SERVER_BANNER">
+<span class="sig-name descname"><span class="pre">SERVER_BANNER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'SERVER_BANNER'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.SERVER_BANNER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.SERVER_HELLO">
+<span class="sig-name descname"><span class="pre">SERVER_HELLO</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'SERVER_HELLO'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.SERVER_HELLO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.SERVER_INFO">
+<span class="sig-name descname"><span class="pre">SERVER_INFO</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'SERVER_INFO'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.SERVER_INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.SERVER_WELCOME">
+<span class="sig-name descname"><span class="pre">SERVER_WELCOME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'SERVER_WELCOME'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.SERVER_WELCOME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.protocol.Protocol.TELL">
+<span class="sig-name descname"><span class="pre">TELL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'TELL'</span></em><a class="headerlink" href="#pypes_server.protocol.Protocol.TELL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+</section>
+<section id="module-pypes_server.server">
+<span id="pypes-server-server-module"></span><h2>pypes_server.server module<a class="headerlink" href="#module-pypes_server.server" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypes_server.server.Server">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pypes_server.server.</span></span><span class="sig-name descname"><span class="pre">Server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_connections</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/server.html#Server"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.server.Server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The server instance.</p>
+<p>Listens for and accept incomming connections, and assign them client handlers.
+Also responsible for anything that involves communication between clients,
+or things that alter the state of the server.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.server.Server.users">
+<span class="sig-name descname"><span class="pre">users</span></span><a class="headerlink" href="#pypes_server.server.Server.users" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary mapping names to client handlers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.server.Server.begin_serving">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">begin_serving</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/server.html#Server.begin_serving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.server.Server.begin_serving" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin listening for incomming connections</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.server.Server.broadcast_info">
+<span class="sig-name descname"><span class="pre">broadcast_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/server.html#Server.broadcast_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.server.Server.broadcast_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.server.Server.broadcast_message">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">broadcast_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">serverclient.UserClient</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/server.html#Server.broadcast_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.server.Server.broadcast_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broadcast a message to all users</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – The message to broadcast</p></li>
+<li><p><strong>sender</strong> (<a class="reference internal" href="#pypes_server.serverclient.UserClient" title="pypes_server.serverclient.UserClient"><em>UserClient</em></a>) – The client that sent the message</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.server.Server.client_handler">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">client_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reader</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">asyncio.streams.StreamReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">asyncio.streams.StreamWriter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/server.html#Server.client_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.server.Server.client_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accept a connection and create a handler for the new client</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.server.Server.drop_user">
+<span class="sig-name descname"><span class="pre">drop_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">serverclient.UserClient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/server.html#Server.drop_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.server.Server.drop_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop a client</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-pypes_server.serverclient">
+<span id="pypes-server-serverclient-module"></span><h2>pypes_server.serverclient module<a class="headerlink" href="#module-pypes_server.serverclient" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pypes_server.serverclient.</span></span><span class="sig-name descname"><span class="pre">UserClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reader</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">asyncio.streams.StreamReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">asyncio.streams.StreamWriter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a client connected to the server</p>
+<p>A single connected client with two streams for communication. Functions as
+the main handler for clients, and is were most of the protocol is
+implemented. Anything beyond 1-to-1 communication with the server should be
+implemented in <cite>Server</cite> class; UserClients should not interact with eachother directly.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.reader">
+<span class="sig-name descname"><span class="pre">reader</span></span><a class="headerlink" href="#pypes_server.serverclient.UserClient.reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>The incoming data stream</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.writer">
+<span class="sig-name descname"><span class="pre">writer</span></span><a class="headerlink" href="#pypes_server.serverclient.UserClient.writer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The outgoing data stream</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pypes_server.serverclient.UserClient.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The username associated with this client</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.color">
+<span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#pypes_server.serverclient.UserClient.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color that this clients name has</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.server">
+<span class="sig-name descname"><span class="pre">server</span></span><a class="headerlink" href="#pypes_server.serverclient.UserClient.server" title="Permalink to this definition">¶</a></dt>
+<dd><p>A reference to the server object.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.handle">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start handling this client</p>
+<p>Main entry point for the client handler.
+First performs the initial handshake to negotiate username, and then
+proceed with handling regular mesasges.
+Check type of received messages and forward to specific handler functions.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.handle_command">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">handle_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.handle_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.handle_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle a COMMAND message sent from the client.</p>
+<p>A COMMAND message represents a user command sent from the client, for example a <cite>/SlashCommand</cite>.
+The payload of a COMMAND is an object with a <cite>cmd</cite> field which is the
+command being sent, and optionally an <cite>args</cite> fields with additional
+data. The structure is essentially the same as the (type, payload)
+format used for message objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – The {‘cmd’: …, ‘args’: …} command object</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.handle_message">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">handle_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.handle_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.handle_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>handle a MESSAGE message.</p>
+<p>Handles a message sent from the client. Simply extract the message from
+the provided object, and forward it to the <cite>Server</cite> for broadcasting.
+MESSAGE does not require arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – The payload. Expected to just contain a {‘message’: …} object</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.handle_tell">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">handle_tell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.handle_tell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.handle_tell" title="Permalink to this definition">¶</a></dt>
+<dd><p>handle a TELL message.</p>
+<p>Handles a message sent from the client to another client.
+Extract the <cite>message</cite> and <cite>target</cite> from the provided payload, and forward to server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – The payload. Expected to just contain a {‘message’: …, ‘target’: …} object</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.perform_handshake">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">perform_handshake</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.perform_handshake"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.perform_handshake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the initial name negotiation</p>
+<p>Before a client can join the chat, a handshake has to be completed.
+The handshake is simply a 3-message conversation that verifies the
+connection, makes sure that the client connects with a valid, available
+username; server says hello, client requests a name, server welcomes the
+client with the name they were assigned. The client can be assigned a
+different name, if the requested name was already taken.</p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 36%"/>
+<col style="width: 26%"/>
+<col style="width: 38%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Server</p></th>
+<th class="head"><p>direction</p></th>
+<th class="head"><p>Client</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HELLO</p></td>
+<td><p>—&gt;</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>&lt;—</p></td>
+<td><p>NAME(requested)</p></td>
+</tr>
+<tr class="row-even"><td><p>WELCOME(assigned)</p></td>
+<td><p>—&gt;</p></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(bool) Success status of the handshake.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.recv">
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.recv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.recv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a message from the client.</p>
+<p>Await a message from the client, parse the data as JSON, and deserialize
+it into a python a dict with the form:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
+    'type': '&lt;MESSAGE_TYPE&gt;',
+    'payload': &lt;ADDITIONAL_DATA&gt;
+}
+</pre></div>
+</div>
+<p>Please behave.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – Amount of bytes to read from the stream</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A (type, data) tuple, which represents the extracted <cite>type</cite> and
+<cite>payload</cite> fields of the received object.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.send">
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a message to the client</p>
+<p>Parse provided arguments to construct a message object.
+Serialize to JSON and send it to the client.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Note that this is not an async method and it does not flush the stream.
+Use <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">self.writer.drain()</span></code> to make sure that previous messages have
+been sent</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> (<em>str</em>) – The protocol message type</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – each key/value-pair will be put in the <code class="docutils literal notranslate"><span class="pre">payload</span></code> field of the sent message</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-pypes_server">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pypes_server" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="glossary.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Glossary</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="pypes_client.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">pypes_client package</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Silas Wagner |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>. |
+            <a class="muted-link" href="_sources/pypes_server.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">pypes_server package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pypes_server.color">pypes_server.color module</a><ul>
+<li><a class="reference internal" href="#color-py">color.py</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pypes_server.main">pypes_server.main module</a></li>
+<li><a class="reference internal" href="#module-pypes_server.protocol">pypes_server.protocol module</a></li>
+<li><a class="reference internal" href="#module-pypes_server.server">pypes_server.server module</a></li>
+<li><a class="reference internal" href="#module-pypes_server.serverclient">pypes_server.serverclient module</a></li>
+<li><a class="reference internal" href="#module-pypes_server">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/main.js"></script>
+    </body>
+</html>
