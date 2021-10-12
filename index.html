@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Raspberry" href="raspberry.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Workshop" href="workshop.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
         <title>Pypes 0.0.1 documentation</title>
@@ -256,7 +256,8 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="raspberry.html">Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workshop.html">Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raspberry.html">Hardware</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pypes.html">The Pypes software and protocol</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="modules.html">src</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="pypes_client.html">pypes_client package</a></li>
@@ -265,6 +266,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Wordlist</a></li>
 </ul>
 
@@ -298,47 +300,45 @@
 </div>
 <section id="overview-of-the-project">
 <h2>Overview of the project<a class="headerlink" href="#overview-of-the-project" title="Permalink to this headline">¶</a></h2>
-<p>This project was made as part of a workshop for young students.</p>
+<p>This project was made as part of a workshop for young students.
+We work shifts on the project, and the general idea is that the students with
+more experience introduce the next wave, and then hand it over.</p>
 <p>The primary focus of the workshop is to give the students a taste of the
-IT-professions through small exersises and projects.</p>
-<p>In order to make these things exciting to engage with, the activities were based
-on embedded devices, namely Arduino and Raspberry Pi’s. This also fits nicely
-into the overall theme which is “build an internet cafe”.
-These documents only describe the Raspberry Pi parts.</p>
-<p>Jeg har en mega stor diller. høhø.</p>
+IT-professions through small exersises and projects.
+A general theme for these workshops is “build an internet cafe”, and most of the
+activities revolve around Raspberry Pis in one way or another.</p>
+<p>This documentation describes the hardware we’ve used, the software we’ve built,
+the activities we planned and things we learned along the way.</p>
+<p>It should be a resource that can be used to learn from and build upon, as the
+project is passed on to other students.</p>
 </section>
-<section id="activities">
-<h2>Activities<a class="headerlink" href="#activities" title="Permalink to this headline">¶</a></h2>
-<section id="short-introduction-to-raspberry-pi">
-<h3>Short introduction to Raspberry Pi.<a class="headerlink" href="#short-introduction-to-raspberry-pi" title="Permalink to this headline">¶</a></h3>
-<p>What is it? What can it do, and what can be said about the hardware?</p>
-<p>See <a class="reference internal" href="raspberry.html"><span class="doc">The Raspberry Pi page</span></a> for more.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<p>The documentation is organised in 4 main parts:</p>
+<section id="the-workshop">
+<h3><a class="reference internal" href="workshop.html"><span class="doc">The workshop</span></a><a class="headerlink" href="#the-workshop" title="Permalink to this headline">¶</a></h3>
+<p>Here you can find an overview of the activities and projects that has been
+prepared so far, as well as some ideas and reflection for future improvement.</p>
 </section>
-<section id="assembling-ethernet-cables">
-<h3>Assembling Ethernet cables.<a class="headerlink" href="#assembling-ethernet-cables" title="Permalink to this headline">¶</a></h3>
-<p>(WIP) Each group cuts a piece of cable, and attach two RJ45 connectors.
-write a small instruction thingy here.</p>
+<section id="the-hardware">
+<h3><a class="reference internal" href="raspberry.html"><span class="doc">The hardware</span></a><a class="headerlink" href="#the-hardware" title="Permalink to this headline">¶</a></h3>
+<p>Still unsure if a Raspberry Pi is edible or not? Just not sure how to configure it
+or where to find relevant tools and software? This is where you go for answers.</p>
 </section>
-<section id="testing-cables-and-joining-a-local-network">
-<h3>Testing cables and joining a local network<a class="headerlink" href="#testing-cables-and-joining-a-local-network" title="Permalink to this headline">¶</a></h3>
-<p>Once cables have been tested and verified to work, groups connect through a
-switch to a local network where a chat server is running.</p>
-<p>The server and client software is an example of something that we developed, and
-it makes for a nice segway to talk a bit about networking and protocols.</p>
-<p>See <a class="reference internal" href="pypes.html"><span class="doc">Pypes documentation</span></a> for documentation of the software.</p>
+<section id="the-software">
+<h3><a class="reference internal" href="pypes.html"><span class="doc">The software</span></a><a class="headerlink" href="#the-software" title="Permalink to this headline">¶</a></h3>
+<p>Documentation for software and scripts we developed for the workshop. Currently
+there is only a server and client for a simple chat service, but hopefully this
+will become a collection of all kinds of software authered by various
+contributers.</p>
 </section>
-<section id="idea-possibly-some-scripting-related-tasks">
-<h3>(IDEA) Possibly some scripting related tasks<a class="headerlink" href="#idea-possibly-some-scripting-related-tasks" title="Permalink to this headline">¶</a></h3>
-<p>The whole theme here is setting up a netcafe, which involves configuring
-several machines similarly. This can be tedious to do one by one. This would
-be a perfect example of something that can be automated through scripting.</p>
-</section>
-<section id="install-retropie-turn-the-desktop-computer-into-a-gaming-system">
-<h3>Install RetroPie. Turn the desktop computer into a gaming system.<a class="headerlink" href="#install-retropie-turn-the-desktop-computer-into-a-gaming-system" title="Permalink to this headline">¶</a></h3>
-<p>Following the <a class="reference internal" href="glossary.html#term-RetroPie"><span class="xref std std-term">RetroPie</span></a> documentation, the students will configure the machines
-with a new operating system. When finished they get to play games for the
-remainder of the day, so this should be scheduled to be within a
-reasonable time before the end of the day.</p>
+<section id="contribution-guidelines">
+<h3><a class="reference internal" href="contributing.html"><span class="doc">Contribution guidelines</span></a><a class="headerlink" href="#contribution-guidelines" title="Permalink to this headline">¶</a></h3>
+<p>Guidelines for contributing to the software and the documentation itself.
+These are not meant to be rules or requirements, but rather help and
+instructions for anyone who would like to make a contribution.</p>
+<p>Minor software improvements, snippets of documentation and spelling corrections
+are all welcome. Regardless of experience, everyone is encouraged to take part.</p>
 </section>
 </section>
 </section>
@@ -348,12 +348,12 @@ reasonable time before the end of the day.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="raspberry.html">
+          <a class="next-page" href="workshop.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Raspberry</div>
+                <div class="title">Workshop</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -388,12 +388,11 @@ reasonable time before the end of the day.</p>
             <ul>
 <li><a class="reference internal" href="#">Pypes documentation</a><ul>
 <li><a class="reference internal" href="#overview-of-the-project">Overview of the project</a></li>
-<li><a class="reference internal" href="#activities">Activities</a><ul>
-<li><a class="reference internal" href="#short-introduction-to-raspberry-pi">Short introduction to Raspberry Pi.</a></li>
-<li><a class="reference internal" href="#assembling-ethernet-cables">Assembling Ethernet cables.</a></li>
-<li><a class="reference internal" href="#testing-cables-and-joining-a-local-network">Testing cables and joining a local network</a></li>
-<li><a class="reference internal" href="#idea-possibly-some-scripting-related-tasks">(IDEA) Possibly some scripting related tasks</a></li>
-<li><a class="reference internal" href="#install-retropie-turn-the-desktop-computer-into-a-gaming-system">Install RetroPie. Turn the desktop computer into a gaming system.</a></li>
+<li><a class="reference internal" href="#contents">Contents</a><ul>
+<li><a class="reference internal" href="#the-workshop"><span class="xref std std-doc">The workshop</span></a></li>
+<li><a class="reference internal" href="#the-hardware"><span class="xref std std-doc">The hardware</span></a></li>
+<li><a class="reference internal" href="#the-software"><span class="xref std std-doc">The software</span></a></li>
+<li><a class="reference internal" href="#contribution-guidelines"><span class="xref std std-doc">Contribution guidelines</span></a></li>
 </ul>
 </li>
 </ul>

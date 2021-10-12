@@ -8,64 +8,61 @@ Pypes documentation
 .. toctree::
    :hidden:
 
-   Raspberry Pi<raspberry>
+   Workshop<workshop>
+   Hardware<raspberry>
    The Pypes software and protocol<pypes>
+   Contribution guidelines<contributing>
    Wordlist<glossary>
 
 Overview of the project
 -----------------------
 
 This project was made as part of a workshop for young students.
+We work shifts on the project, and the general idea is that the students with
+more experience introduce the next wave, and then hand it over.
 
 The primary focus of the workshop is to give the students a taste of the
 IT-professions through small exersises and projects.
+A general theme for these workshops is “build an internet cafe”, and most of the
+activities revolve around Raspberry Pis in one way or another.
 
-In order to make these things exciting to engage with, the activities were based
-on embedded devices, namely Arduino and Raspberry Pi’s. This also fits nicely
-into the overall theme which is “build an internet cafe”.
-These documents only describe the Raspberry Pi parts.
+This documentation describes the hardware we’ve used, the software we’ve built,
+the activities we planned and things we learned along the way.
 
+It should be a resource that can be used to learn from and build upon, as the
+project is passed on to other students.
 
-Jeg har en mega stor diller. høhø.
+Contents
+--------
 
-Activities
-----------
+The documentation is organised in 4 main parts:
 
-Short introduction to Raspberry Pi.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:doc:`The workshop<workshop>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-What is it? What can it do, and what can be said about the hardware?
+Here you can find an overview of the activities and projects that has been
+prepared so far, as well as some ideas and reflection for future improvement.
 
-See :doc:`The Raspberry Pi page<raspberry>` for more.
+:doc:`The hardware<raspberry>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Assembling Ethernet cables.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Still unsure if a Raspberry Pi is edible or not? Just not sure how to configure it
+or where to find relevant tools and software? This is where you go for answers.
 
-(WIP) Each group cuts a piece of cable, and attach two RJ45 connectors.
-write a small instruction thingy here.
+:doc:`The software<pypes>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Testing cables and joining a local network
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documentation for software and scripts we developed for the workshop. Currently
+there is only a server and client for a simple chat service, but hopefully this
+will become a collection of all kinds of software authered by various
+contributers.
 
-Once cables have been tested and verified to work, groups connect through a
-switch to a local network where a chat server is running.
-
-The server and client software is an example of something that we developed, and
-it makes for a nice segway to talk a bit about networking and protocols.
-
-See :doc:`pypes` for documentation of the software.
-
-(IDEA) Possibly some scripting related tasks
+:doc:`Contribution guidelines<contributing>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The whole theme here is setting up a netcafe, which involves configuring
-several machines similarly. This can be tedious to do one by one. This would
-be a perfect example of something that can be automated through scripting.
+Guidelines for contributing to the software and the documentation itself.
+These are not meant to be rules or requirements, but rather help and
+instructions for anyone who would like to make a contribution.
 
-Install RetroPie. Turn the desktop computer into a gaming system.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Following the :term:`RetroPie` documentation, the students will configure the machines
-with a new operating system. When finished they get to play games for the
-remainder of the day, so this should be scheduled to be within a
-reasonable time before the end of the day.
+Minor software improvements, snippets of documentation and spelling corrections
+are all welcome. Regardless of experience, everyone is encouraged to take part.

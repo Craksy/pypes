@@ -20,14 +20,6 @@ pypes\_client.client module
    :undoc-members:
    :show-inheritance:
 
-pypes\_client.color module
---------------------------
-
-.. automodule:: pypes_client.color
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pypes\_client.cursesclient module
 ---------------------------------
 

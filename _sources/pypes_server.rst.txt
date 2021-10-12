@@ -4,14 +4,6 @@ pypes\_server package
 Submodules
 ----------
 
-pypes\_server.color module
---------------------------
-
-.. automodule:: pypes_server.color
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pypes\_server.main module
 -------------------------
 

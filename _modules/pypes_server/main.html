@@ -255,7 +255,8 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../raspberry.html">Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../workshop.html">Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../raspberry.html">Hardware</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../pypes.html">The Pypes software and protocol</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../modules.html">src</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../pypes_client.html">pypes_client package</a></li>
@@ -264,6 +265,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contribution guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Wordlist</a></li>
 </ul>
 
@@ -295,7 +297,6 @@
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">server</span> <span class="kn">import</span> <span class="n">Server</span>
-<span class="kn">import</span> <span class="nn">color</span>
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../pypes_server.html#pypes_server.main.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
@@ -304,8 +305,8 @@
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">begin_serving</span><span class="p">())</span></div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
-    <span class="n">fmt</span> <span class="o">=</span> <span class="s2">"</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="se">\n</span><span class="s2">[</span><span class="si">%(levelname)7s</span><span class="s2">]"</span><span class="o">+</span><span class="n">color</span><span class="o">.</span><span class="n">fg256</span><span class="p">(</span><span class="s1">'c1e50b'</span><span class="p">,</span> <span class="s2">"</span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s2">"</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="se">\n</span><span class="s2">[</span><span class="si">%(levelname)7s</span><span class="s2">]"</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">fmt</span><span class="p">)</span>
     <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
 </pre></div>

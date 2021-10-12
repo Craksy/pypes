@@ -255,7 +255,8 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../raspberry.html">Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../workshop.html">Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../raspberry.html">Hardware</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../pypes.html">The Pypes software and protocol</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../modules.html">src</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../pypes_client.html">pypes_client package</a></li>
@@ -264,6 +265,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contribution guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Wordlist</a></li>
 </ul>
 
@@ -293,52 +295,52 @@
         <article role="main">
           <h1>Source code for pypes_client.inputfield</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">curses</span>
-<span class="kn">from</span> <span class="nn">_curses</span> <span class="kn">import</span> <span class="n">window</span>
+
 
 <div class="viewcode-block" id="InputField"><a class="viewcode-back" href="../../pypes_client.html#pypes_client.inputfield.InputField">[docs]</a><span class="k">class</span> <span class="nc">InputField</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">win</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">newwin</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">newpad</span><span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">newpad</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
         <span class="c1"># self.win.border()</span>
         <span class="c1"># self.win.refresh()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_x</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_row</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_input</span> <span class="o">=</span> <span class="s2">""</span>
 
 <div class="viewcode-block" id="InputField.add_char"><a class="viewcode-back" href="../../pypes_client.html#pypes_client.inputfield.InputField.add_char">[docs]</a>    <span class="k">def</span> <span class="nf">add_char</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">addch</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
-        <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">getyx</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_row</span> <span class="o">+=</span><span class="mi">1</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_row</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">getyx</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_row</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_row</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_x</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_input</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">char</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="InputField.flush_input"><a class="viewcode-back" href="../../pypes_client.html#pypes_client.inputfield.InputField.flush_input">[docs]</a>    <span class="k">def</span> <span class="nf">flush_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_input</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_input</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_x</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">msg</span></div>
 
 <div class="viewcode-block" id="InputField.backspace"><a class="viewcode-back" href="../../pypes_client.html#pypes_client.inputfield.InputField.backspace">[docs]</a>    <span class="k">def</span> <span class="nf">backspace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">getyx</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">getyx</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">addch</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">addch</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_input</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="InputField.refresh"><a class="viewcode-back" href="../../pypes_client.html#pypes_client.inputfield.InputField.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="o">.</span><span class="n">box</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="o">.</span><span class="n">noutrefresh</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span></div></div>
 </pre></div>
         </article>
       </div>
