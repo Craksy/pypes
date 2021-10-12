@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "pypes"
+version = "0.1.0"
+description = "Simple chat protocol, server and client"
+authors = ["Craksy"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pyright = "^0.0.10"
+isort = "^5.9.3"
+black = "^21.9b0"
+pytest = "^6.2.5"
+pyflakes = "^2.4.0"
+furo = "^2021.10.9"
+Sphinx = "^4.2.0"
+
+[tool.pyright]
+pythonPlatform="Linux"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

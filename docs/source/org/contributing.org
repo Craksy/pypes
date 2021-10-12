@@ -1,0 +1,17 @@
+#+TITLE: Contributing
+#+AUTHOR: Silas Wagner
+#+EMAIL: silaswagner.dev@gmail.com
+
+* EXPORT CONFIG :ignore:noexport:
+#+OPTIONS: H:4 num:nil toc:nil ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: tex:t todo:t pri:nil tags:t texht:nil
+#+OPTIONS: author:nil creator:nil email:nil date:nil
+#+EXPORT_FILE_NAME: ../contributing.rst
+
+
+* WIP :ignore:
+
+
+#+begin_note
+This is a WIP
+#+end_note
