@@ -25,6 +25,9 @@ on embedded devices, namely Arduino and Raspberry Pi’s. This also fits nicely
 into the overall theme which is “build an internet cafe”.
 These documents only describe the Raspberry Pi parts.
 
+
+Jeg har en mega stor diller. høhø.
+
 Activities
 ----------
 
