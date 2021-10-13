@@ -98,7 +98,7 @@ class Server:
         payload = {"message": message, "sender": sender.name, "color": sender.color}
         for user in self.users.values():
             try:
-                user.send(
+                await user.send(
                     protocol.Protocol.MESSAGE,
                     message=message,
                     sender=sender.name,

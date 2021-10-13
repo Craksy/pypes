@@ -6,17 +6,57 @@ from typing import Any, Tuple
 
 from protocol import Protocol
 
-palette=[
-    '2f4f4f', '556b2f', 'a0522d', '2e8b57', '228b22',
-    '800000', '708090', '808000', '483d8b', '008080',
-    'b8860b', '4682b4', 'd2691e', '9acd32', '33338b',
-    '32cd32', '7f007f', '8fbc8f', 'b03060', '9932cc',
-    'ff4500', '00ced1', 'ff8c00', 'ffd700', 'c71585',
-    '4444cd', '00ff00', '00ff7f', '4169e1', 'dc143c',
-    '00bfff', 'f4a460', '6666ff', 'a020f0', 'adff2f',
-    'ff6347', 'da70d6', 'b0c4de', 'ff00ff', 'f0e68c',
-    'fa8072', 'ffff54', '6495ed', 'dda0dd', '90ee90',
-    'afeeee', '7fffd4', 'ff69b4', 'ffe4c4', 'ffc0cb',
+palette = [
+    "2f4f4f",
+    "556b2f",
+    "a0522d",
+    "2e8b57",
+    "228b22",
+    "800000",
+    "708090",
+    "808000",
+    "483d8b",
+    "008080",
+    "b8860b",
+    "4682b4",
+    "d2691e",
+    "9acd32",
+    "33338b",
+    "32cd32",
+    "7f007f",
+    "8fbc8f",
+    "b03060",
+    "9932cc",
+    "ff4500",
+    "00ced1",
+    "ff8c00",
+    "ffd700",
+    "c71585",
+    "4444cd",
+    "00ff00",
+    "00ff7f",
+    "4169e1",
+    "dc143c",
+    "00bfff",
+    "f4a460",
+    "6666ff",
+    "a020f0",
+    "adff2f",
+    "ff6347",
+    "da70d6",
+    "b0c4de",
+    "ff00ff",
+    "f0e68c",
+    "fa8072",
+    "ffff54",
+    "6495ed",
+    "dda0dd",
+    "90ee90",
+    "afeeee",
+    "7fffd4",
+    "ff69b4",
+    "ffe4c4",
+    "ffc0cb",
 ]
 
 # ?: just put these inside of the relevant handlers?
@@ -34,6 +74,7 @@ NAME <navn>       - Anmod om at skifte navn
 COLOR <farve>     - skift farven dit navn bliver vist med. farven angives som
                     hexadecimal i formatet RRGGBB eller 0xRRGGBB"""
 
+
 class UserClient:
     """Represents a client connected to the server
 
@@ -49,7 +90,8 @@ class UserClient:
         color:  The color that this clients name has
         server: A reference to the server object.
     """
-    def __init__(self, reader:StreamReader, writer:StreamWriter, server):
+
+    def __init__(self, reader: StreamReader, writer: StreamWriter, server):
         """Initialize a new client.
 
         Args:
@@ -59,35 +101,35 @@ class UserClient:
         """
         self.reader = reader
         self.writer = writer
-        self.name:str = ""
-        self.color:str = ""
-        self.server:server.Server = server
+        self.name: str = ""
+        self.color: str = ""
+        self.server: server.Server = server
 
-
-    def send(self, type, **kwargs):
+    async def send(self, type, **kwargs):
         """Send a message to the client
 
         Parse provided arguments to construct a message object.
         Serialize to JSON and send it to the client.
-
-        .. important::
-            Note that this is not an async method and it does not flush the stream.
-            Use ``await self.writer.drain()`` to make sure that previous messages have
-            been sent
 
         Args:
             type (str): The protocol message type
             kwargs (dict): each key/value-pair will be put in the ``payload`` field of the sent message
         """
         try:
-            message = {'type': type}
+            message = {"type": type}
             if kwargs:
-                message['payload'] = kwargs
-            serialized = json.dumps(message)
-            self.writer.write(serialized.encode('utf8'))
+                message["payload"] = kwargs
+            serialized = json.dumps(message).encode("utf8")
+            size = len(serialized)
+            if size > 0xFFF:
+                # throw error. size limit exeeded
+                ...
+            self.writer.write(int.to_bytes(size, 4, "little"))
+            await self.writer.drain()
+            self.writer.write(serialized)
+            await self.writer.drain()
         except Exception as e:
             logging.warning("We fked up: %s", e)
-
 
     async def recv(self, size) -> Tuple[str, Any]:
         """Receive a message from the client.
@@ -109,10 +151,15 @@ class UserClient:
             A (type, data) tuple, which represents the extracted `type` and
             `payload` fields of the received object.
         """
+        header = await self.reader.read(4)
+        size = int.from_bytes(header, "little")
+        if size > 0xFFF:
+            # drop connection. beyond size limit
+            ...
         message = await self.reader.read(size)
         deserialized = json.loads(message)
-        kind = deserialized['type']
-        data = deserialized['payload']
+        kind = deserialized["type"]
+        data = deserialized["payload"]
         return kind, data
 
     async def handle(self):
@@ -125,8 +172,10 @@ class UserClient:
         """
         if not await self.perform_handshake():
             return
-        self.send(Protocol.SERVER_INFO,
-                  message=welcome_text.format(name=self.name))
+        await self.writer.drain()
+        await self.send(
+            Protocol.SERVER_INFO, message=welcome_text.format(name=self.name)
+        )
         logging.info("Accepted client %s", self.name)
         while True:
             typ, data = await self.recv(1024)
@@ -149,15 +198,15 @@ class UserClient:
         Args:
             data (dict): The {'cmd': ..., 'args': ...} command object
         """
-        cmd = data.get('cmd').upper()
-        args = data.get('args')
+        cmd = data.get("cmd").upper()
+        args = data.get("args")
         logging.info("handling command %s with args %s", cmd, args)
         if cmd == "HELP":
-            self.send(Protocol.SERVER_INFO, message=help_text)
+            await self.send(Protocol.SERVER_INFO, message=help_text)
         elif cmd == "NAME":
             newname = args[0]
             if newname in self.server.users:
-                self.send(Protocol.SERVER_INFO, message="Navn optaget")
+                await self.send(Protocol.SERVER_INFO, message="Navn optaget")
                 return
             self.server.users[newname] = self
             del self.server.users[self.name]
@@ -168,9 +217,9 @@ class UserClient:
                 int(clr, 16)
                 self.color = clr
             except:
-                self.send(Protocol.SERVER_INFO, message="ugyldigt format")
+                await self.send(Protocol.SERVER_INFO, message="ugyldigt format")
                 return
-    
+
     async def handle_message(self, data):
         """handle a MESSAGE message.
 
@@ -181,10 +230,9 @@ class UserClient:
         Args:
             data (dict): The payload. Expected to just contain a {'message': ...} object
         """
-        message = data['message']
+        message = data["message"]
         logging.info("[{} MESSAGE]: {}".format(self.name, message))
         await self.server.broadcast_message(message, self)
-
 
     async def handle_tell(self, data):
         """handle a TELL message.
@@ -195,19 +243,17 @@ class UserClient:
         Args:
             data (dict): The payload. Expected to just contain a {'message': ..., 'target': ...} object
         """
-        message = data['message']
-        recepient = data['target']
+        message = data["message"]
+        recepient = data["target"]
         logging.info("[{} TELL]: {}".format(self.name, message))
         target = self.server.users.get(recepient)
         if target:
-            payload = dict(message=message, 
-                           sender=self.name, 
-                           color=self.color)
+            payload = dict(message=message, sender=self.name, color=self.color)
             target.send(Protocol.TELL, **payload)
             # TODO: this is not going to work
-            self.send(Protocol.TELL, **payload)
+            await self.send(Protocol.TELL, **payload)
         else:
-            self.send(Protocol.SERVER_INFO, message="User not found")
+            await self.send(Protocol.SERVER_INFO, message="User not found")
 
     async def perform_handshake(self):
         """Performs the initial name negotiation
@@ -235,28 +281,30 @@ class UserClient:
         retry_count = 0
         while True:
             try:
-                self.send(Protocol.SERVER_HELLO)
-                await self.writer.drain()
+                await self.send(Protocol.SERVER_HELLO)
                 typ, data = await self.recv(1024)
                 if not typ == Protocol.CLIENT_NAME:
                     raise Exception("Invalid response type. Expected 'NAME'")
-                name = data['name']
-                #TODO: This entire thing could be a `Server.accept_user(name)` or something
+                name = data["name"]
+                # TODO: This entire thing could be a `Server.accept_user(name)` or something
                 suffix = 0
                 while name in self.server.users:
                     suffix += 1
-                    name = data['name']+str(suffix)
+                    name = data["name"] + str(suffix)
                 self.name = name
                 self.server.users[self.name] = self
                 self.color = choice(palette)
-                self.send(Protocol.SERVER_WELCOME, name=self.name)
-                await self.writer.drain()
+                await self.send(Protocol.SERVER_WELCOME, name=self.name)
                 return True
             except Exception as e:
                 logging.warning("[%s]Handshake failed: %s", self, e)
                 if retry_count <= 3:
-                    logging.info("[%s]Attempting handshake again. Attempt %s/3", self, retry_count)
-                    retry_count+=1
+                    logging.info(
+                        "[%s]Attempting handshake again. Attempt %s/3",
+                        self,
+                        retry_count,
+                    )
+                    retry_count += 1
                     continue
                 else:
                     logging.info("[%s]Retry limit reached. dropping client.", self)

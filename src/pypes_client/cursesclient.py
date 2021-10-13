@@ -113,16 +113,31 @@ class MainWin:
             self.output_field.refresh()
 
     async def recv(self):
-        message = await self.reader.read(1024)
-        deser = json.loads(message)
-        return deser.get("type"), deser.get("payload")
+        header = await self.reader.read(4)
+        size = int.from_bytes(header, "little")
+        if size > 0xFFF:
+            # drop connection. beyond size limit
+            ...
+        data = await self.reader.read(size)
+        try:
+            message = json.loads(data)
+            return message.get("type"), message.get("payload")
+        except:
+            print("could not deserialize data:", data)
+            return None, None
 
     async def send(self, typ, **kwargs):
         message = {"type": typ}
         if kwargs:
             message["payload"] = kwargs
-        ser = json.dumps(message).encode("utf8")
-        self.writer.write(ser)
+        data = json.dumps(message).encode("utf8")
+        size = len(data)
+        if size > 0xFFF:
+            # throw error. size limit exeeded
+            ...
+        self.writer.write(int.to_bytes(size, 4, "little"))
+        await self.writer.drain()
+        self.writer.write(data)
         await self.writer.drain()
 
     async def authenticate(self, name):
