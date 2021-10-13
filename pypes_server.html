@@ -561,16 +561,10 @@ it into a python a dict with the form:</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pypes_server.serverclient.UserClient.send">
-<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.send" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">async</span> </em><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypes_server/serverclient.html#UserClient.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypes_server.serverclient.UserClient.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send a message to the client</p>
 <p>Parse provided arguments to construct a message object.
 Serialize to JSON and send it to the client.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Note that this is not an async method and it does not flush the stream.
-Use <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">self.writer.drain()</span></code> to make sure that previous messages have
-been sent</p>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
