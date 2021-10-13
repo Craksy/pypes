@@ -8,8 +8,6 @@ from asyncio.streams import StreamReader, StreamWriter
 from curses import ERR, wrapper
 from typing import Tuple
 
-from _curses import window
-
 from chatwin import ChatWin
 from inputfield import InputField
 from protocol import Protocol
