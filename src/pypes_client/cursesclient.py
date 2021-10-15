@@ -6,7 +6,7 @@ import json
 import sys
 from asyncio.streams import StreamReader, StreamWriter
 from curses import ERR, wrapper
-from typing import Tuple
+from typing import Any, Optional, Tuple
 
 from chatwin import ChatWin
 from inputfield import InputField
@@ -20,18 +20,52 @@ C2B = 255 / 1000
 
 
 def hex2rgb(hexstring: str) -> Tuple[int, int, int]:
+    """Convert Hex color string to (r,g,b) tuple
+
+    Args:
+        hexstring (str): Hex color to convert
+
+    Returns:
+        Tuple[int, int, int]: R,G,B tuple
+    """
     if hexstring.startswith("#"):
         hexstring = hexstring[1:]
     value = int(hexstring, 16)
     return value >> 16 & 0xFF, value >> 8 & 0xFF, value & 0xFF
 
 
-def rgb2curs(r, g, b):
+def rgb2curs(r:int, g:int, b:int):
+    """Convert regular rgb to curses rgb
+
+    Contrary to standard 24bit RGB, curses uses values in the range 0-1000.
+
+    Args:
+        r (int): The red color component
+        g (int): The green color component
+        b (int): The blue color component
+
+    Returns:
+        Tuple[int, int, int]: curses color
+    """
     return int(r * B2C), int(g * B2C), int(b * B2C)
 
 
 class MainWin:
+    """The main curses window.
+
+    Contains the in- and out streams that interact with the socket, and is
+    responsible for handling the communication with the server.  Actual display
+    and user input is handled by the child components `MainWin.input_field` and
+    `MainWin.output_field`.
+
+    Args:
+        display (screen): The main curses display. Dependency injected by the curses wrapper.
+    """
+
     def __init__(self, display):
+        """Initialize the main window
+
+        """
         self.display: window = display
         self.reader: StreamReader
         self.writer: StreamWriter
@@ -50,6 +84,14 @@ class MainWin:
         loop.run_forever()
 
     def get_or_create_color(self, color):
+        """Return the id for `color` or define a new color pair if it hasn't
+        been created yet.
+
+        :param color: The color to request
+        :type color: str
+        :return: The color
+        :rtype: int
+        """
         if not color in self.colors:
             r, g, b = rgb2curs(*hex2rgb(color))
             n = len(self.colors) + 10
@@ -71,6 +113,8 @@ class MainWin:
                 await asyncio.sleep(0.1)
 
     async def poll_input(self):
+        """Try to read user input, yielding control back to the event loop if none is
+        available."""
         while True:
             try:
                 char = self.display.getch()
@@ -81,8 +125,17 @@ class MainWin:
             else:
                 await asyncio.sleep(0.1)
 
-    async def handle_input(self, char):
-        if char in (curses.KEY_BACKSPACE, "\b", "\x08", "\x7f", curses.ascii.BS):
+    async def handle_input(self, char:int):
+        """Handle received keyboard input.
+
+        Check input handle handle deletion and submission with backspace and
+        enter. Otherwise assume printable character and try to insert it in the
+        input field.
+
+        :param char: The keycode for the pressed key.
+        :type char: int
+        """
+        if char in (curses.KEY_BACKSPACE, "\b", "\x08", "\x7f", curses.ascii.BS): 
             self.input_field.backspace()
         elif char == 10:
             message = self.input_field.flush_input()
@@ -97,7 +150,14 @@ class MainWin:
             self.input_field.add_char(char)
         self.input_field.refresh()
 
-    def handle_message(self, typ, data=None):
+    def handle_message(self, typ:str, data:Optional[Any]=None):
+        """handle a server message
+
+        :param typ: The protocol message type
+        :type typ: str
+        :param data: the `payload` component of the received message, defaults to None
+        :type data: Optional[Any], optional
+        """
         if typ == Protocol.MESSAGE:
             sender = data.get("sender")
             msg = data.get("message")
@@ -124,7 +184,14 @@ class MainWin:
             print("could not deserialize data:", data)
             return None, None
 
-    async def send(self, typ, **kwargs):
+    async def send(self, typ:str, **kwargs):
+        """Send a message to the server
+
+        Every key/value pair in `kwargs` will be added as a field in the `payload` of the final message.
+
+        :param typ: The protocol message type
+        :type typ: str
+        """
         message = {"type": typ}
         if kwargs:
             message["payload"] = kwargs
@@ -138,7 +205,14 @@ class MainWin:
         self.writer.write(data)
         await self.writer.drain()
 
-    async def authenticate(self, name):
+    async def authenticate(self, name:str) -> bool:
+        """Perform the handshake with the server
+
+        :param name: the requested name.
+        :type name: str
+        :return: success status of the handshake
+        :rtype: bool
+        """
         while True:
             typ, _ = await self.recv()
             if typ == Protocol.SERVER_HELLO:
@@ -148,7 +222,7 @@ class MainWin:
                 return True
 
 
-def main(display: window):
+def main(display):
     win = MainWin(display)
     win.run()
 
